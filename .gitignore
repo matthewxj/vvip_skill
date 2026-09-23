@@ -1,0 +1,32 @@
+# Python and build output
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Raw measurements, model files and generated packages
+artifacts/
+*.log
+*.safetensors
+*.gguf
+*.pt
+*.pth
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+*~

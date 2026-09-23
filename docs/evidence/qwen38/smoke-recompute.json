@@ -1,0 +1,89 @@
+{
+  "schema": "vvip.smoke/v1",
+  "passed": true,
+  "error": null,
+  "run_id": "vvip-smoke-ce5a3243245b42c9b528884d881042c2",
+  "mode": "enforce",
+  "action": "recompute",
+  "records": {
+    "baseline": {
+      "request_id": "vvip-smoke-ce5a3243245b42c9b528884d881042c2-baseline",
+      "started": 1728682.981172315,
+      "first_token": 1728683.110478016,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728714.424119604,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "230ff0f0c3bb95ce814b9f63a3c52cc3e5cd5fb0d1a7240ae8e0456738d909de"
+    },
+    "low": {
+      "request_id": "vvip-smoke-ce5a3243245b42c9b528884d881042c2-low",
+      "started": 1728714.424527958,
+      "first_token": 1728714.503332785,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728746.846137805,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "230ff0f0c3bb95ce814b9f63a3c52cc3e5cd5fb0d1a7240ae8e0456738d909de"
+    },
+    "high": {
+      "request_id": "vvip-smoke-ce5a3243245b42c9b528884d881042c2-high",
+      "started": 1728714.503418707,
+      "first_token": 1728714.640264496,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728715.559413935,
+      "terminal_count": 1,
+      "token_count": 16,
+      "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+    },
+    "followup": {
+      "request_id": "vvip-smoke-ce5a3243245b42c9b528884d881042c2-followup",
+      "started": 1728746.846282335,
+      "first_token": 1728746.924464121,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728747.353294393,
+      "terminal_count": 1,
+      "token_count": 8,
+      "token_sha256": "e76093faa6aaad1663c63a8055005402f27741cabfdf30fb89a0bfea72dae67f"
+    }
+  },
+  "events": [
+    {
+      "action": "recompute",
+      "boot_id": "7dbae84606a941ebb786c1ae87435139",
+      "computed_tokens_before": 13,
+      "event": "preempted",
+      "generated_tokens": 2,
+      "monotonic": 1728714.5647073,
+      "private_blocks_released": true,
+      "requester_id": "cmpl-vvip-smoke-ce5a3243245b42c9b528884d881042c2-high-0-8bd43322",
+      "requester_priority": -10,
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "terminal": false,
+      "victim_id": "cmpl-vvip-smoke-ce5a3243245b42c9b528884d881042c2-low-0-8dde82ac",
+      "victim_priority": 0
+    },
+    {
+      "boot_id": "7dbae84606a941ebb786c1ae87435139",
+      "event": "resumed",
+      "monotonic": 1728715.559230575,
+      "request_id": "cmpl-vvip-smoke-ce5a3243245b42c9b528884d881042c2-low-0-8dde82ac",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1"
+    },
+    {
+      "boot_id": "7dbae84606a941ebb786c1ae87435139",
+      "event": "recomputed",
+      "monotonic": 1728715.634976687,
+      "request_id": "cmpl-vvip-smoke-ce5a3243245b42c9b528884d881042c2-low-0-8dde82ac",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "tokens": 13
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+{
+  "schema": "vvip.historical-evidence/v1",
+  "records": [
+    {
+      "model": "Kimi K3",
+      "date": "2026-09-21",
+      "action": "abort",
+      "topology": "single-engine",
+      "passed": true,
+      "pairs": [
+        {
+          "priority_pair": "P0>P1",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P2>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        }
+      ],
+      "original_evidence_sha256": "ff8b62728a87a98162c0e0e2bc044c604495df176eba6b61afeda7b4b0a74031",
+      "evidence_scope": "Historical implementation; not this standalone adapter or recompute certification"
+    },
+    {
+      "model": "Qwen3.8 NVFP4",
+      "date": "2026-09-21",
+      "action": "abort",
+      "topology": "single-engine",
+      "passed": true,
+      "pairs": [
+        {
+          "priority_pair": "P0>P1",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P2>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        }
+      ],
+      "original_evidence_sha256": "bf229d71a591299fc8290a0a615d8625c3b35579dbdb9aaf34eb91e0a21b2d61",
+      "evidence_scope": "Historical implementation; not this standalone adapter or recompute certification"
+    },
+    {
+      "model": "GLM-5.3 NVFP4",
+      "date": "2026-09-21",
+      "action": "abort",
+      "topology": "prefill-decode",
+      "passed": true,
+      "pairs": [
+        {
+          "priority_pair": "P0>P1",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P2",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P3",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P2",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P3",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P2>P3",
+          "passed": true,
+          "stage_count": 2,
+          "stage_roles": [
+            "prefill",
+            "decode"
+          ],
+          "terminal_statuses": [
+            "completed",
+            "cancelled"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        }
+      ],
+      "original_evidence_sha256": "34735a6657dda1a166e2120a4f4bf40cb5cd4f23406aab64bd30b6c4c9372fb2",
+      "evidence_scope": "Historical implementation; not this standalone adapter or recompute certification"
+    },
+    {
+      "model": "GLM-5.3 NVFP4",
+      "date": "2026-09-21",
+      "action": "abort",
+      "topology": "single-engine",
+      "passed": true,
+      "pairs": [
+        {
+          "priority_pair": "P0>P1",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P0>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P2",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P1>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        },
+        {
+          "priority_pair": "P2>P3",
+          "passed": true,
+          "stage_count": 1,
+          "stage_roles": [
+            "engine"
+          ],
+          "terminal_statuses": [
+            "aborted"
+          ],
+          "checks": {
+            "victim_preempted": true,
+            "victim_first_token_observed": true,
+            "requester_http_status": 200,
+            "worker_terminal": true,
+            "running_released": true,
+            "kv_or_capacity_reusable": true,
+            "all_stages_scheduler_absent": true,
+            "all_stages_running_released": true,
+            "all_stages_request_private_kv_released": true,
+            "all_stages_capacity_reusable": true,
+            "all_stages_have_internal_ids": true
+          }
+        }
+      ],
+      "original_evidence_sha256": "74804dd904fb81cd97313397794a35731d1a7df8e239cdc9d902f41259fd1326",
+      "evidence_scope": "Historical implementation; not this standalone adapter or recompute certification"
+    }
+  ],
+  "redaction": "Only model, test outcomes, generic topology and evidence digest retained. No deployment identifiers, addresses, accounts, prompts or billing data."
+}

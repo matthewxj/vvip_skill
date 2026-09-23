@@ -1,0 +1,100 @@
+{
+  "schema": "vvip.guards/v1",
+  "passed": true,
+  "error": null,
+  "run_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9",
+  "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+  "boot_id": "77a02a85db76432d8d2428404f33f196",
+  "records": [
+    {
+      "case": "equal",
+      "running": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-equal-running",
+        "started": 1729350.348183203,
+        "first_token": 1729350.48089654,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729358.50060653,
+        "terminal_count": 1,
+        "token_count": 128,
+        "token_sha256": "a58f01f312c8e6b674145fb08e1d1ef255abbd7d6d242f9a88df1b8b04420052"
+      },
+      "incoming": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-equal-incoming",
+        "started": 1729350.480990261,
+        "first_token": 1729358.579031326,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729359.527369639,
+        "terminal_count": 1,
+        "token_count": 16,
+        "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+      }
+    },
+    {
+      "case": "reverse",
+      "running": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-reverse-running",
+        "started": 1729359.527729081,
+        "first_token": 1729359.608034096,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729367.65016706,
+        "terminal_count": 1,
+        "token_count": 128,
+        "token_sha256": "a58f01f312c8e6b674145fb08e1d1ef255abbd7d6d242f9a88df1b8b04420052"
+      },
+      "incoming": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-reverse-incoming",
+        "started": 1729359.608099244,
+        "first_token": 1729367.728321619,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729368.674561245,
+        "terminal_count": 1,
+        "token_count": 16,
+        "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+      }
+    },
+    {
+      "case": "disabled",
+      "running": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-disabled-running",
+        "started": 1729368.674932696,
+        "first_token": 1729368.755004058,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729376.782430397,
+        "terminal_count": 1,
+        "token_count": 128,
+        "token_sha256": "a58f01f312c8e6b674145fb08e1d1ef255abbd7d6d242f9a88df1b8b04420052"
+      },
+      "incoming": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-disabled-incoming",
+        "started": 1729368.755068305,
+        "first_token": 1729376.860632227,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729377.803198374,
+        "terminal_count": 1,
+        "token_count": 16,
+        "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+      }
+    },
+    {
+      "case": "disconnect",
+      "followup": {
+        "request_id": "vvip-guards-0a3b77744c4a472a959704b310cde4f9-followup",
+        "started": 1729377.883247772,
+        "first_token": 1729378.025127466,
+        "finish_reason": "length",
+        "stop_reason": null,
+        "ended": 1729378.970074493,
+        "terminal_count": 1,
+        "token_count": 16,
+        "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+      }
+    }
+  ],
+  "events": []
+}

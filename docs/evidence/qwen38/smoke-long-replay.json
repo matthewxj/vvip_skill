@@ -1,0 +1,109 @@
+{
+  "schema": "vvip.smoke/v1",
+  "passed": true,
+  "error": null,
+  "run_id": "vvip-smoke-6f80c2b126934978995899e71fe06dc8",
+  "mode": "enforce",
+  "action": "recompute",
+  "preempt_after_tokens": 128,
+  "custom_prompt_sha256": "ad37daac21a6fbc04714a7006eb7e3356f19fb388dcc36bd678f9ec5f264ada0",
+  "records": {
+    "baseline": {
+      "request_id": "vvip-smoke-6f80c2b126934978995899e71fe06dc8-baseline",
+      "started": 1729543.77431397,
+      "first_token": 1729544.178710763,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729575.330863758,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "c3844989411385a650b59f7f7320e67117b222d9b9a3e1952dfc3e91410a6020"
+    },
+    "low": {
+      "request_id": "vvip-smoke-6f80c2b126934978995899e71fe06dc8-low",
+      "started": 1729575.331228218,
+      "first_token": 1729575.686645324,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729608.079611956,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "c3844989411385a650b59f7f7320e67117b222d9b9a3e1952dfc3e91410a6020"
+    },
+    "high": {
+      "request_id": "vvip-smoke-6f80c2b126934978995899e71fe06dc8-high",
+      "started": 1729583.414128665,
+      "first_token": 1729583.551864678,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729584.477258765,
+      "terminal_count": 1,
+      "token_count": 16,
+      "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+    },
+    "followup": {
+      "request_id": "vvip-smoke-6f80c2b126934978995899e71fe06dc8-followup",
+      "started": 1729608.079735853,
+      "first_token": 1729608.157437448,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729608.583031347,
+      "terminal_count": 1,
+      "token_count": 8,
+      "token_sha256": "e76093faa6aaad1663c63a8055005402f27741cabfdf30fb89a0bfea72dae67f"
+    }
+  },
+  "events": [
+    {
+      "action": "recompute",
+      "boot_id": "aae8588f78e54ca28b9a1562e8746ed8",
+      "computed_tokens_before": 2288,
+      "event": "preempted",
+      "generated_tokens": 129,
+      "monotonic": 1729583.475119468,
+      "private_blocks_released": true,
+      "requester_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-high-0-9bd42f59",
+      "requester_priority": -10,
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "terminal": false,
+      "victim_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-low-0-84f052e0",
+      "victim_priority": 0
+    },
+    {
+      "boot_id": "aae8588f78e54ca28b9a1562e8746ed8",
+      "event": "resumed",
+      "monotonic": 1729584.476930971,
+      "request_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-low-0-84f052e0",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1"
+    },
+    {
+      "boot_id": "aae8588f78e54ca28b9a1562e8746ed8",
+      "event": "recomputed",
+      "monotonic": 1729584.612710955,
+      "request_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-low-0-84f052e0",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "tokens": 1024
+    },
+    {
+      "boot_id": "aae8588f78e54ca28b9a1562e8746ed8",
+      "event": "recomputed",
+      "monotonic": 1729584.751838384,
+      "request_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-low-0-84f052e0",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "tokens": 1024
+    },
+    {
+      "boot_id": "aae8588f78e54ca28b9a1562e8746ed8",
+      "event": "recomputed",
+      "monotonic": 1729584.835363322,
+      "request_id": "cmpl-vvip-smoke-6f80c2b126934978995899e71fe06dc8-low-0-84f052e0",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "tokens": 240
+    }
+  ]
+}

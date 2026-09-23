@@ -1,0 +1,4 @@
+interface:
+  display_name: "VVIP"
+  short_description: "Portable vLLM running-request preemption"
+  default_prompt: "Use $vvip to configure and verify vLLM preemption for my model."

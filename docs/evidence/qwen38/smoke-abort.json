@@ -1,0 +1,80 @@
+{
+  "schema": "vvip.smoke/v1",
+  "passed": true,
+  "error": null,
+  "run_id": "vvip-smoke-eb30f938b1a84ce49ea18403545c1d96",
+  "mode": "enforce",
+  "action": "abort",
+  "records": {
+    "baseline": {
+      "request_id": "vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-baseline",
+      "started": 1728857.414083957,
+      "first_token": 1728857.543330565,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728888.79717807,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "230ff0f0c3bb95ce814b9f63a3c52cc3e5cd5fb0d1a7240ae8e0456738d909de"
+    },
+    "low": {
+      "request_id": "vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-low",
+      "started": 1728888.7975662,
+      "first_token": 1728888.87617627,
+      "finish_reason": "abort",
+      "stop_reason": "vvip_preempted",
+      "ended": 1728889.013182078,
+      "terminal_count": 1,
+      "token_count": 2,
+      "token_sha256": "53d7d678d0dcfcb13dbed42704ee96955bf37eb7f87a2c94b8bebd47f29d2cc0"
+    },
+    "high": {
+      "request_id": "vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-high",
+      "started": 1728888.876254679,
+      "first_token": 1728889.013128998,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728889.929592481,
+      "terminal_count": 1,
+      "token_count": 16,
+      "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+    },
+    "followup": {
+      "request_id": "vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-followup",
+      "started": 1728889.929692864,
+      "first_token": 1728890.006428382,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1728890.43328321,
+      "terminal_count": 1,
+      "token_count": 8,
+      "token_sha256": "e76093faa6aaad1663c63a8055005402f27741cabfdf30fb89a0bfea72dae67f"
+    }
+  },
+  "events": [
+    {
+      "action": "abort",
+      "boot_id": "b1c307ccd83d40babaf5c6a2939292b1",
+      "computed_tokens_before": 13,
+      "event": "preempted",
+      "generated_tokens": 2,
+      "monotonic": 1728888.937373217,
+      "private_blocks_released": true,
+      "requester_id": "cmpl-vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-high-0-bb3c9675",
+      "requester_priority": -10,
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1",
+      "terminal": true,
+      "victim_id": "cmpl-vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-low-0-8345b0ef",
+      "victim_priority": 0
+    },
+    {
+      "boot_id": "b1c307ccd83d40babaf5c6a2939292b1",
+      "event": "abort_delivered",
+      "monotonic": 1728889.012599362,
+      "request_id": "cmpl-vvip-smoke-eb30f938b1a84ce49ea18403545c1d96-low-0-8345b0ef",
+      "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+      "schema": "vvip.event/v1"
+    }
+  ]
+}

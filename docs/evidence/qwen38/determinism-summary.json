@@ -1,0 +1,286 @@
+{
+  "schema": "vvip.determinism-summary/v1",
+  "model": "nvidia/Qwen3.8-27B-NVFP4",
+  "condition": {
+    "command": [
+      "python3",
+      "/skill/scripts/vvip.py",
+      "serve",
+      "/model",
+      "--mode",
+      "enforce",
+      "--action",
+      "recompute",
+      "--execute",
+      "--",
+      "--served-model-name",
+      "qwen38-vvip",
+      "--max-model-len",
+      "8192",
+      "--max-num-seqs",
+      "4",
+      "--max-num-batched-tokens",
+      "1024",
+      "--gpu-memory-utilization",
+      "0.60",
+      "--enforce-eager",
+      "--no-enable-prefix-caching",
+      "--mamba-cache-mode",
+      "none",
+      "--language-model-only",
+      "--limit-mm-per-prompt",
+      "{\"image\":0,\"video\":0}"
+    ],
+    "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+    "physical_gpu": 0,
+    "model_revision": "482ca0f3832238542f8f5295dde86b5f22711d80",
+    "trigger_wait_ms": 100,
+    "client_sha256": "4d9cf9a4a1cece4633d118dbe10efca59e85aa9be7543e01553f428fd3414c09",
+    "diagnostic_client_sha256": "e895f8cdd309a9094cbb1618c4f67b8eb92f5468d0fe48de319926ec0767fef0"
+  },
+  "verified_transfer_files": 14,
+  "request_contract_passed": true,
+  "measured_requests": 36,
+  "comparisons": [
+    {
+      "reference": 0,
+      "trial": 1,
+      "mode": "off",
+      "identical": 4,
+      "compared": 6,
+      "records": [
+        {
+          "index": 0,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 1,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 0
+        },
+        {
+          "index": 2,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 3,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 3
+        },
+        {
+          "index": 4,
+          "tier": "vip",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 5,
+          "tier": "vip",
+          "identical": true,
+          "first_difference_zero_based": null
+        }
+      ]
+    },
+    {
+      "reference": 0,
+      "trial": 2,
+      "mode": "recompute",
+      "identical": 4,
+      "compared": 6,
+      "records": [
+        {
+          "index": 0,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 1,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 2,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 3,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 4,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        },
+        {
+          "index": 5,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        }
+      ]
+    },
+    {
+      "reference": 0,
+      "trial": 3,
+      "mode": "off",
+      "identical": 4,
+      "compared": 6,
+      "records": [
+        {
+          "index": 0,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 0
+        },
+        {
+          "index": 1,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 0
+        },
+        {
+          "index": 2,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 3,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 4,
+          "tier": "vip",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 5,
+          "tier": "vip",
+          "identical": true,
+          "first_difference_zero_based": null
+        }
+      ]
+    },
+    {
+      "reference": 0,
+      "trial": 4,
+      "mode": "recompute",
+      "identical": 4,
+      "compared": 6,
+      "records": [
+        {
+          "index": 0,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 1,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 2,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 3,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 4,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        },
+        {
+          "index": 5,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        }
+      ]
+    },
+    {
+      "reference": 0,
+      "trial": 5,
+      "mode": "recompute",
+      "identical": 2,
+      "compared": 6,
+      "records": [
+        {
+          "index": 0,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 1,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 0
+        },
+        {
+          "index": 2,
+          "tier": "ordinary",
+          "identical": true,
+          "first_difference_zero_based": null
+        },
+        {
+          "index": 3,
+          "tier": "ordinary",
+          "identical": false,
+          "first_difference_zero_based": 3
+        },
+        {
+          "index": 4,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        },
+        {
+          "index": 5,
+          "tier": "vip",
+          "identical": false,
+          "first_difference_zero_based": 3
+        }
+      ]
+    }
+  ],
+  "event_counts": {
+    "preempted": 6,
+    "resumed": 6,
+    "recomputed": 6
+  },
+  "replayed_positions": 489,
+  "original_evidence_hashes": {
+    "diagnostic.json": "60924fc3f6859ff8fa5c4a3dbe95788126f93bbe9c97c0e3c508bb5d4620c6ca",
+    "server.log": "7ff60bfbb7039f4bceb90dfc1915dcf90b8801077bf371a93b1bb7c42b13c459",
+    "container-final.json": "fb40f797e791488702b8292e63ea0e31e0983beee8a5330a168691a4dbaee2b5",
+    "driver.py": "7df84892836f711033f6cbf5bb1552be3dae7eb9f3f2fc347ebead42cee66b32",
+    "smoke-client.py": "4d9cf9a4a1cece4633d118dbe10efca59e85aa9be7543e01553f428fd3414c09",
+    "diagnostic-client.py": "e895f8cdd309a9094cbb1618c4f67b8eb92f5468d0fe48de319926ec0767fef0"
+  },
+  "conclusion": "Off/off repetition already differs in the same process before any actual preemption. This disproves a claim that every observed difference requires preemption; it does not establish quality equivalence or exclude additional effects of recompute."
+}

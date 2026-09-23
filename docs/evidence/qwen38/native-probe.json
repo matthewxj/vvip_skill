@@ -1,0 +1,12 @@
+{
+  "request_id": "native-probe",
+  "started": 1728571.895500057,
+  "first_token": 1728572.025457025,
+  "finish_reason": "length",
+  "stop_reason": null,
+  "ended": 1728572.945769567,
+  "terminal_count": 1,
+  "passed": true,
+  "token_count": 16,
+  "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+}

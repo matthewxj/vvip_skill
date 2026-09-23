@@ -1,0 +1,55 @@
+{
+  "schema": "vvip.smoke/v1",
+  "passed": true,
+  "error": null,
+  "run_id": "vvip-smoke-c27c8d7fbbef46a1b34c163037904f4a",
+  "mode": "off",
+  "action": "recompute",
+  "records": {
+    "baseline": {
+      "request_id": "vvip-smoke-c27c8d7fbbef46a1b34c163037904f4a-baseline",
+      "started": 1729000.455932258,
+      "first_token": 1729000.587164552,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729032.085501155,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "1d962a2e8fc75d7a96f4175b77fb8cd59243a3d520716193819aed274a39c9cf"
+    },
+    "low": {
+      "request_id": "vvip-smoke-c27c8d7fbbef46a1b34c163037904f4a-low",
+      "started": 1729032.085912569,
+      "first_token": 1729032.166206398,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729063.744042031,
+      "terminal_count": 1,
+      "token_count": 512,
+      "token_sha256": "1d962a2e8fc75d7a96f4175b77fb8cd59243a3d520716193819aed274a39c9cf"
+    },
+    "high": {
+      "request_id": "vvip-smoke-c27c8d7fbbef46a1b34c163037904f4a-high",
+      "started": 1729032.166277786,
+      "first_token": 1729063.82172571,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729064.747414614,
+      "terminal_count": 1,
+      "token_count": 16,
+      "token_sha256": "a491bf3ba32fbc666b88cbb24647edb50a85e0e1c1bffa003d9a8e1fbea45fe1"
+    },
+    "followup": {
+      "request_id": "vvip-smoke-c27c8d7fbbef46a1b34c163037904f4a-followup",
+      "started": 1729064.747528937,
+      "first_token": 1729064.826097415,
+      "finish_reason": "length",
+      "stop_reason": null,
+      "ended": 1729065.256963677,
+      "terminal_count": 1,
+      "token_count": 8,
+      "token_sha256": "e76093faa6aaad1663c63a8055005402f27741cabfdf30fb89a0bfea72dae67f"
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,162 @@
+{
+  "schema": "vvip.acceptance-summary/v1",
+  "date": "2026-09-23",
+  "model": "nvidia/Qwen3.8-27B-NVFP4",
+  "model_revision": "482ca0f3832238542f8f5295dde86b5f22711d80",
+  "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+  "vllm": "0.30.0",
+  "source_profile_files": 35,
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "driver": "580.178.04",
+  "gpu": "NVIDIA RTX 6000D",
+  "gpu_memory_mib": 85651,
+  "single_gpu": true,
+  "image": "docker.m.daocloud.io/vllm/vllm-openai:v0.30.0",
+  "image_digest": "sha256:8a69ffad015f138d7170c4ddc429e230a3bc1c1719f67e14324749df200a4b90",
+  "runner": "V2",
+  "quantization": "modelopt_mixed",
+  "base_dtype": "bfloat16",
+  "kv_dtype": "auto",
+  "kernels": {
+    "nvfp4": "FlashInferCutlassNvFp4LinearKernel",
+    "fp8": "FlashInferFP8ScaledMMLinearKernel",
+    "gdn_prefill": "FlashInfer",
+    "gdn_decode": "cuda"
+  },
+  "command": [
+    "python3",
+    "/skill/scripts/vvip.py",
+    "serve",
+    "/model",
+    "--mode",
+    "enforce",
+    "--action",
+    "recompute",
+    "--execute",
+    "--",
+    "--served-model-name",
+    "qwen38-vvip",
+    "--port",
+    "8000",
+    "--max-num-seqs",
+    "1",
+    "--max-model-len",
+    "8192",
+    "--max-num-batched-tokens",
+    "1024",
+    "--tensor-parallel-size",
+    "1",
+    "--pipeline-parallel-size",
+    "1",
+    "--data-parallel-size",
+    "1",
+    "--gpu-memory-utilization",
+    "0.60",
+    "--no-enable-prefix-caching",
+    "--mamba-cache-mode",
+    "none",
+    "--enforce-eager",
+    "--limit-mm-per-prompt",
+    "{\"image\":0,\"video\":0}",
+    "--language-model-only"
+  ],
+  "source_doctor_compatible": true,
+  "gpu_acceptance_passed": true,
+  "trigger_wait_ms": 0,
+  "smoke_client_sha256": "ee68c78563556f844f8fda031b01ef4af14763598e4ca364a185a779b121cb85",
+  "guards_client_sha256": "befc4c6eed790e1ca2f7f3bfe9b8e5ceee6eaa96070c830741d59de533c3adea",
+  "long_replay_client_sha256": "4d9cf9a4a1cece4633d118dbe10efca59e85aa9be7543e01553f428fd3414c09",
+  "cases": [
+    {
+      "case": "enforce-recompute",
+      "passed": true,
+      "vip_ttft_ms": 136.84578891843557,
+      "low_tokens": 512,
+      "low_finish": "length",
+      "low_stop": null,
+      "baseline_token_identity": true,
+      "event_counts": {
+        "resumed": 1,
+        "preempted": 1,
+        "recomputed": 1
+      },
+      "report": "smoke-recompute.json",
+      "sha256": "157388cdd8bd877bc93353d5812c19beaeea154c203306c2287eb4dfc24b7f7d"
+    },
+    {
+      "case": "enforce-abort",
+      "passed": true,
+      "vip_ttft_ms": 136.87431905418634,
+      "low_tokens": 2,
+      "low_finish": "abort",
+      "low_stop": "vvip_preempted",
+      "baseline_token_identity": false,
+      "event_counts": {
+        "preempted": 1,
+        "abort_delivered": 1
+      },
+      "report": "smoke-abort.json",
+      "sha256": "8b19e3e9b443406a2ed36010ea82cc308886b2c117cc7377c935e51ba12541f6"
+    },
+    {
+      "case": "off-recompute",
+      "passed": true,
+      "vip_ttft_ms": 31655.447924043983,
+      "low_tokens": 512,
+      "low_finish": "length",
+      "low_stop": null,
+      "baseline_token_identity": true,
+      "event_counts": {},
+      "report": "smoke-off.json",
+      "sha256": "6278135df6c197904c20612921d65a18c6b8f5069eafa6cc06b46c2e92c571e0"
+    },
+    {
+      "case": "shadow-recompute",
+      "passed": true,
+      "vip_ttft_ms": 31798.450110014528,
+      "low_tokens": 512,
+      "low_finish": "length",
+      "low_stop": null,
+      "baseline_token_identity": true,
+      "event_counts": {
+        "would_preempt": 60
+      },
+      "report": "smoke-shadow.json",
+      "sha256": "7b60f31a3688ebf5e5e5f60803efe80767ab90dd96d6eaaed7dd418fda268d9c"
+    }
+  ],
+  "guards": [
+    "equal",
+    "reverse",
+    "disabled",
+    "disconnect"
+  ],
+  "long_replay": {
+    "passed": true,
+    "recomputed_tokens": 2288,
+    "generated_tokens_at_preemption": 129,
+    "runtime_sha256": "1422c1e1e030cdf3869c6714020e4c722b38d59afbe27b16fb9ad8b731875559",
+    "prompt_tokens": 2160,
+    "output_tokens": 512,
+    "token_identity": true,
+    "prompt_sha256": "ad37daac21a6fbc04714a7006eb7e3356f19fb388dcc36bd678f9ec5f264ada0"
+  },
+  "raw_transfer_verified_files": 149,
+  "evidence_sha256": {
+    "model-manifest.json": "870fc1515be09b916519eca612e67cc419f2a51384150c74c088dd5860d7a3a8",
+    "native-probe.json": "8bed176abf5bfbdfca3262b50a2e132935b1b688e228f2d01b937ccdd67bc2a3",
+    "smoke-recompute.json": "157388cdd8bd877bc93353d5812c19beaeea154c203306c2287eb4dfc24b7f7d",
+    "smoke-abort.json": "8b19e3e9b443406a2ed36010ea82cc308886b2c117cc7377c935e51ba12541f6",
+    "smoke-off.json": "6278135df6c197904c20612921d65a18c6b8f5069eafa6cc06b46c2e92c571e0",
+    "smoke-shadow.json": "7b60f31a3688ebf5e5e5f60803efe80767ab90dd96d6eaaed7dd418fda268d9c",
+    "guards.json": "54714aa202a8c0e3a345ddf85434ad01357d23026506c2fad13ae49a1f7330ad",
+    "smoke-long-replay.json": "4f5f7aaa6b830a22d7d872f67dd2bc672132400df568179fb99aac8dc674263c"
+  },
+  "limitations": [
+    "Finite correctness tests; not a statistical performance result",
+    "FP4 lm_head tuning bucket fallback warnings retained",
+    "Shutdown force-kill/resource_tracker semaphore warnings retained; no long-duration leak claim",
+    "Eager, text, single GPU, no prefix cache; no graph/TP/distributed certification"
+  ]
+}

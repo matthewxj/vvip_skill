@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vvip-vllm"
+version = "0.1.0"
+description = "Agent skill and engine-local priority preemption for vLLM"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/matthewxj/vvip_skill"
+Issues = "https://github.com/matthewxj/vvip_skill/issues"
+
+[project.optional-dependencies]
+engine = ["vllm==0.30.0"]
+
+[project.scripts]
+vvip = "vvip_runtime.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["skills/vvip/scripts"]
+
+[tool.setuptools.package-data]
+vvip_runtime = ["compatibility.json"]
