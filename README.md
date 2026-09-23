@@ -60,7 +60,7 @@ git clone https://github.com/matthewxj/vvip_skill.git
 cd vvip_skill
 ```
 
-Copy the entire `skills/vvip` directory into your agent's skill directory. Keep `scripts`, `references`, `agents`, and `LICENSE` together. For agents without skill discovery, explicitly ask them to read `skills/vvip/SKILL.md`.
+Copy the entire `skills/vvip` directory into your agent's skill directory. Keep `scripts`, `references`, `agents`, `assets`, and `LICENSE` together. For agents without skill discovery, explicitly ask them to read `skills/vvip/SKILL.md`.
 
 To install a repository-local Codex skill from a clone, the included `.agents/skills/vvip` discovery link already points to the canonical directory. Start a new session in the repository.
 
