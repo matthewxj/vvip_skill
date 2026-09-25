@@ -10,14 +10,13 @@ from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import math
-import os
 from pathlib import Path
 import statistics
 import time
-import urllib.request
 import uuid
 
-from gpu_smoke import read_events
+from completion_client import completion_events
+from gpu_smoke import read_run_events
 
 SCENARIOS = {
     # (ordinary count, ordinary output length, VIP count, context repetitions)
@@ -43,7 +42,7 @@ def workload(scenario, trial):
     return jobs
 
 
-def request(base, model, job, request_id, start, timeout):
+def request(base, model, job, request_id, start, timeout, *, ttft_timeout=None, idle_timeout=None):
     target = start + job['offset']
     time.sleep(max(0, target - time.monotonic()))
     result = dict(request_id=request_id, index=job['index'], tier=job['tier'],
@@ -56,27 +55,15 @@ def request(base, model, job, request_id, start, timeout):
                    priority=job['priority'], max_tokens=job['tokens'], stream=True,
                    stream_options={'include_usage': True}, temperature=0, seed=42,
                    ignore_eos=True, return_token_ids=True)
-    headers = {'Content-Type': 'application/json'}
-    if os.environ.get('VVIP_API_KEY'):
-        headers['Authorization'] = 'Bearer ' + os.environ['VVIP_API_KEY']
-    req = urllib.request.Request(base.rstrip('/') + '/v1/completions',
-                                 data=json.dumps(payload).encode(), headers=headers)
     tokens, gaps, previous, done, terminals = [], [], None, False, 0
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as response:
-            for line in response:
+        with completion_events(base, payload, timeout, ttft_timeout=ttft_timeout,
+                               idle_timeout=idle_timeout) as chunks:
+            for chunk in chunks:
                 now = time.monotonic()
-                if now - result['started'] > timeout:
-                    raise TimeoutError('deadline')
-                if not line.startswith(b'data: '):
-                    continue
-                data = line[6:].strip()
-                if data == b'[DONE]':
+                if chunk is None:
                     done = True
                     break
-                chunk = json.loads(data)
-                if chunk.get('error'):
-                    raise RuntimeError('SSE error')
                 if chunk.get('usage'):
                     result['usage'] = {k: v for k, v in chunk['usage'].items()
                                        if k in {'prompt_tokens', 'completion_tokens', 'total_tokens'}}
@@ -160,6 +147,8 @@ def main():
     parser.add_argument('--trials', type=int, default=8)
     parser.add_argument('--block', type=int, default=0)
     parser.add_argument('--timeout', type=float, default=180)
+    parser.add_argument('--ttft-timeout', type=float, help='headers through first real output; defaults to timeout')
+    parser.add_argument('--idle-timeout', type=float, help='gap between real output chunks; defaults to timeout')
     parser.add_argument('--slo', type=float, default=1.0)
     parser.add_argument('--server-log', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
@@ -168,19 +157,28 @@ def main():
         parser.error('trials must be 1..100; block must be 0..99')
     if not 0 < args.timeout <= 600 or not math.isfinite(args.slo) or args.slo <= 0:
         parser.error('timeout must be 0..600 and SLO positive finite')
+    if any(v is not None and (not math.isfinite(v) or v <= 0)
+           for v in (args.ttft_timeout, args.idle_timeout)):
+        parser.error('phase timeouts must be positive finite seconds')
     if args.out.exists():
         parser.error('output already exists')
     run_id = 'vvip-bench-' + uuid.uuid4().hex
+    phase_timeouts = dict(ttft_timeout=args.ttft_timeout, idle_timeout=args.idle_timeout)
     # Warm ordinary/vip prompt lengths and decode kernels before measurement.
     warm = workload(args.scenario, -1)
     with ThreadPoolExecutor(max_workers=len(warm)) as executor:
         start = time.monotonic() + 0.1
         futures = [executor.submit(request, args.base_url, args.model, job,
-                   run_id + f'-warm-{job["index"]}', start, args.timeout) for job in warm]
+                   run_id + f'-warm-{job["index"]}', start, args.timeout, **phase_timeouts) for job in warm]
         warm_results = [f.result() for f in futures]
     if any(r['error'] for r in warm_results):
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        with args.out.open('x') as output:
+            json.dump(dict(schema='vvip.benchmark/v1', run_id=run_id, valid=False,
+                           invalid_reasons=['warmup request failed'], variant=args.variant,
+                           scenario=args.scenario, warmup=warm_results, trials=[]), output, indent=2)
         parser.exit(1, 'warmup request failed; inspect server logs\n')
-    offset = args.server_log.stat().st_size
+    snapshot = args.server_log.stat()
     trials = []
     workload_digests = []
     for index in range(args.trials):
@@ -190,21 +188,22 @@ def main():
         with ThreadPoolExecutor(max_workers=len(jobs)) as executor:
             start = time.monotonic() + 0.05
             futures = [executor.submit(request, args.base_url, args.model, job,
-                       run_id + f'-t{index}-{job["index"]}', start, args.timeout) for job in jobs]
+                       run_id + f'-t{index}-{job["index"]}', start, args.timeout, **phase_timeouts) for job in jobs]
             rows = [f.result() for f in futures]
         duration = max(r['ended'] for r in rows) - min(r['started'] for r in rows)
         trials.append(dict(index=index, duration_s=duration, records=rows,
                            summary=summarize(rows, duration, args.slo)))
-    with args.server_log.open('rb') as log:
-        log.seek(offset)
-        events = [e for e in read_events(log.read().decode(errors='replace'))
-                  if run_id in json.dumps(e)]
+    invalid = []
+    try:
+        events = read_run_events(args.server_log, snapshot, run_id)
+    except (RuntimeError, ValueError, OSError) as exc:
+        events = []
+        invalid.append('unavailable or changed engine evidence: ' + type(exc).__name__)
     records = [r for t in trials for r in t['records']]
     errors = [r['request_id'] for r in records if r['error']]
     max_lag = max(r['dispatch_lag_s'] for r in records)
     duration = sum(t['duration_s'] for t in trials)
     event_counts = dict(Counter(e['event'] for e in events))
-    invalid = []
     if errors: invalid.append('request errors')
     if max_lag > 0.1: invalid.append('dispatch lag exceeded 100 ms')
     if any(r['finish_reason'] == 'abort' for r in records) and args.variant != 'abort':
@@ -218,6 +217,7 @@ def main():
     report = dict(schema='vvip.benchmark/v1', run_id=run_id, valid=not invalid,
                   invalid_reasons=invalid, variant=args.variant, scenario=args.scenario,
                   block=args.block, model=args.model, trials=trials,
+                  timeouts={'total': args.timeout, **phase_timeouts},
                   workload_sha256=workload_digests, max_dispatch_lag_s=max_lag,
                   measured_duration_s=duration, summary=summarize(records, duration, args.slo),
                   events=events, event_counts=event_counts)

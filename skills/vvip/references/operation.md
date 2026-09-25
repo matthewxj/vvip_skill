@@ -123,6 +123,27 @@ The baseline and victim use the same prompt; its SHA256 is recorded. Inspect `co
 
 Early completion, token mismatch, a disconnected HTTP stream, or missing correlated events do not pass. Quantization or batch shape can change numerical results; investigate and preserve differences rather than weakening the check and claiming identity.
 
+### Client deadlines and failed runs
+
+`--timeout` is an absolute per-request deadline, including HTTP headers and all
+output. Optional `--ttft-timeout` covers the time through the first real output;
+`--idle-timeout` limits gaps after output begins. Both default to the total budget.
+Headers, heartbeats, and empty role/start frames do not start or reset output-idle
+timing. For example, use `--timeout 600 --ttft-timeout 480 --idle-timeout 120` for
+a bounded long-prefill test. A recompute pause must fit the chosen idle budget.
+The total deadline never resets, even while the server trickles a partial line.
+
+These flags also apply to `benchmark.py`; keep them identical across compared
+variants. Reports record the budgets, and the analyzer rejects mismatched policies.
+The clients connect directly without redirects, environment proxy discovery, or
+automatic retries. Use loopback or a tunnel to the isolated native endpoint.
+
+Smoke transport failures and benchmark warmup failures write failed reports.
+Retain those alongside successful runs; do not reinterpret a missing terminal or
+HTTP 200 as success. Use a fresh engine log and output path. Detected log rotation,
+truncation, engine restart, or mixed smoke identities invalidates the evidence.
+See [reliability and recovery](reliability.md) for limitations and ingress tests.
+
 ## 3. Abort and controls
 
 Stop the dedicated recompute instance. Relaunch with the same model options but `--mode enforce --action abort` and a new `artifacts/abort-server.log`, then run:
@@ -155,7 +176,7 @@ python3 scripts/gpu_guards.py --model qwen38-vvip \
   --disable-file /absolute/operator-owned/vvip.disabled --out artifacts/guards.json
 ```
 
-The script verifies the logged switch path, equal/reverse-priority behavior, disabled preemption, and a client disconnect after its first token followed by successful reuse. The switch file must initially be absent; the script removes only its own file. These bounded checks do not cover every cancellation race or long-term leak.
+The script verifies the logged switch path, equal/reverse-priority behavior, disabled preemption, and a client disconnect after its first token followed by successful HTTP reuse. The switch file must initially be absent; the script removes only its own file. The disconnect record explicitly has `native_release_verified=false`: a successful follow-up does not distinguish native cancellation from the original request finishing naturally. Do not use this check as proof of private-KV release, reclaimed capacity, cancellation latency, or absence of leaks. Stronger claims require exact native evidence through the actual ingress; see [reliability](reliability.md).
 
 ## 4. Application requests
 

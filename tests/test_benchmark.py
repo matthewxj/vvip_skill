@@ -43,6 +43,10 @@ class BenchmarkChecks(unittest.TestCase):
                     summary=trial['summary'], trials=[trial], measured_duration_s=3., events=[])
         treatment=deepcopy(base); treatment['variant']='recompute'
         result=aggregate([base,treatment])
+        treatment['timeouts'] = {'total': 1}
+        with self.assertRaisesRegex(ValueError, 'timeout policy mismatch'):
+            aggregate([base, treatment])
+        del treatment['timeouts']
         self.assertEqual(result['spare']['variants']['recompute']['vip_trial_median_ttft_delta']['mean_delta_s'],0)
         self.assertEqual(result['spare']['variants']['recompute']['completed_token_identity_vs_native']['identical'],1)
         treatment['trials'][0]['records'][0]['token_sha256']='changed'

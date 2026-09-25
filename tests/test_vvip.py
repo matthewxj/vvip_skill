@@ -288,6 +288,23 @@ class VVIPChecks(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "kv_transfer"):
             check_config(config)
         config.kv_transfer_config = None
+        for name in ("ec_transfer_config", "lora_config", "speculative_config"):
+            with self.subTest(unsupported=name):
+                setattr(config, name, NS())
+                with self.assertRaisesRegex(RuntimeError, name):
+                    check_config(config)
+                setattr(config, name, None)
+        for name in ("data_parallel_size", "pipeline_parallel_size",
+                     "decode_context_parallel_size", "prefill_context_parallel_size"):
+            with self.subTest(unsupported=name):
+                setattr(config.parallel_config, name, 2)
+                with self.assertRaisesRegex(RuntimeError, name):
+                    check_config(config)
+                setattr(config.parallel_config, name, 1)
+        config.max_concurrent_batches = 2
+        with self.assertRaisesRegex(RuntimeError, "in-flight"):
+            check_config(config)
+        config.max_concurrent_batches = 1
         config.model_config.is_hybrid = True
         state = NS(mamba_type=NS(name="GDN_ATTN"), mamba_cache_mode="none", num_speculative_blocks=0)
         kv = NS(kv_cache_groups=[NS(kv_cache_spec=state), NS(kv_cache_spec=NS())])
@@ -314,10 +331,22 @@ class VVIPChecks(unittest.TestCase):
             verify(baseline, low, high, high, [], "enforce", "recompute")
         event = dict(event="preempted", action="recompute", victim_id="cmpl-low-id-0-1234abcd",
                      requester_id="cmpl-high-id-0-5678cdef", boot_id="boot", terminal=False,
-                     private_blocks_released=True)
-        resumed = dict(event="resumed", request_id="cmpl-low-id-0-1234abcd", boot_id="boot")
+                     runtime_sha256="runtime", private_blocks_released=True)
+        resumed = dict(event="resumed", request_id="cmpl-low-id-0-1234abcd", boot_id="boot",
+                       runtime_sha256="runtime")
         events = read_events("prefix vvip_event=" + json.dumps(event) + "\nvvip_event=" + json.dumps(resumed))
         verify(baseline, low, high, high, events, "enforce", "recompute")
+        for key in ("boot_id", "runtime_sha256"):
+            with self.subTest(identity=key):
+                changed = dict(resumed, **{key: "different"})
+                with self.assertRaisesRegex(AssertionError, "identity"):
+                    verify(baseline, low, high, high, [event, changed], "enforce", "recompute")
+        abort = dict(event, action="abort", terminal=True)
+        delivered = dict(resumed, event="abort_delivered")
+        aborted = dict(low, finish_reason="abort", stop_reason="vvip_preempted")
+        verify(baseline, aborted, high, high, [abort, delivered], "enforce", "abort")
+        with self.assertRaisesRegex(AssertionError, "abort delivery"):
+            verify(baseline, aborted, high, high, [abort, delivered, delivered], "enforce", "abort")
         with self.assertRaisesRegex(AssertionError, "unique exact-request"):
             verify(baseline, low, high, high, events + [event], "enforce", "recompute")
         low["token_ids"] = [1, 3]

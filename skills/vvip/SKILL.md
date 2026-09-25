@@ -25,6 +25,8 @@ configuring a server read [operation.md](references/operation.md), then
 [compatibility.md](references/compatibility.md) for supported combinations.
 Read [design.md](references/design.md) when extending the runtime or integrating
 external admission/lease accounting.
+For timeouts, disconnects, missing release evidence, or deployment incidents,
+read [reliability.md](references/reliability.md) before choosing a recovery action.
 
 ## Workflow
 
@@ -47,7 +49,8 @@ external admission/lease accounting.
    For performance use matched native-priority baseline and benchmark.py; report
    ordinary completion/throughput costs beside VIP latency. One smoke is not a
    performance result. gpu_guards.py checks equal/reverse priorities, a configured
-   disable file, and client disconnect on an isolated single-sequence server.
+   disable file, and HTTP reuse after client disconnect on an isolated
+   single-sequence server. That reuse check does not prove native cancellation.
 6. Report implementation, source-check, CPU-check, and GPU-check status separately.
    Use existing session authorization; prepare concrete deployment changes before
    requesting any missing approval. Use the disable-file switch for an authorized
@@ -62,7 +65,11 @@ external admission/lease accounting.
   the header precedence. An ordinary API key must not permit self-promotion.
 - The scheduler owns queues and allocation. Local events are diagnostic evidence,
   **not signed/durable remote release receipts**; never clear external leases from
-  these logs.
+  these logs. Missing records, EOF, timeouts, HTTP 404, and low utilization do not
+  prove release or non-dispatch. Disabling preemption does not resolve old work.
+- Keep the absolute request deadline through headers and protocol-only frames.
+  Start output-idle timing only after real model output. Test long-prefill and
+  disconnect behavior through the actual ingress; a direct-engine smoke is narrower.
 - Abort is terminal even when HTTP is 200. Consumers must inspect finish/stop
   reasons and cannot treat partial output as successful completion.
 - Current adapter: experimental, source-pinned to vLLM `0.30.0` (35 files).

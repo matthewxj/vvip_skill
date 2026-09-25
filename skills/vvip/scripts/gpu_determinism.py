@@ -14,7 +14,7 @@ import time
 import uuid
 
 from benchmark import workload
-from gpu_smoke import read_events, stream
+from gpu_smoke import read_events, read_run_events, stream
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
         p.error('dedicated recompute/enforce server with this exact switch required')
     run='vvip-repeat-'+uuid.uuid4().hex
     jobs=workload('saturated',0)
-    offset=a.server_log.stat().st_size
+    snapshot=a.server_log.stat()
     trials=[];comparisons=[];events=[];error=None;owns=False
     def wave(label):
         start=time.monotonic()+.1
@@ -56,9 +56,7 @@ def main():
             if mode=='recompute' and owns:
                 a.disable_file.unlink();owns=False
             trials.append(dict(index=index,mode=mode,records=wave(f't{index}')))
-        with a.server_log.open('rb') as log:
-            log.seek(offset)
-            events=[e for e in read_events(log.read().decode(errors='replace')) if run in json.dumps(e)]
+        events=read_run_events(a.server_log, snapshot, run, ready[0]['boot_id'])
         for trial in trials:
             related=[e for e in events if f'{run}-t{trial["index"]}-' in json.dumps(e)]
             count=sum(e['event']=='preempted' for e in related)
@@ -77,22 +75,30 @@ def main():
             comparisons.append(dict(reference=0,trial=trial['index'],mode=trial['mode'],
                                     identical=sum(d['identical'] for d in diffs),compared=len(diffs),records=diffs))
     except Exception as exc:
-        error=type(exc).__name__+': '+str(exc)
+        error=type(exc).__name__
     finally:
         if owns:a.disable_file.unlink()
+    evidence_error=None
+    try:
+        events=read_run_events(a.server_log, snapshot, run, ready[0]['boot_id'])
+    except (RuntimeError, ValueError, OSError) as exc:
+        evidence_error=type(exc).__name__
     for trial in trials:
         for row in trial['records']:
             ids=row.pop('token_ids');row['token_count']=len(ids)
             row['token_sha256']=hashlib.sha256(json.dumps(ids).encode()).hexdigest()
-    report=dict(schema='vvip.determinism-diagnostic/v1',request_contract_passed=error is None,error=error,
+    passed=error is None and evidence_error is None
+    report=dict(schema='vvip.determinism-diagnostic/v1',request_contract_passed=passed,error=error,
+                evidence_error=evidence_error,
                 run_id=run,runtime_sha256=ready[0]['runtime_sha256'],boot_id=ready[0]['boot_id'],
                 workload_sha256=hashlib.sha256(json.dumps(jobs,sort_keys=True).encode()).hexdigest(),
                 trials=trials,comparisons=comparisons,events=events,
                 scope='Same process/GPU; bitwise equality is measured, not required for request-contract success')
     a.out.parent.mkdir(parents=True,exist_ok=True)
     with a.out.open('x') as output:json.dump(report,output,indent=2)
-    print(json.dumps({'request_contract_passed':error is None,'error':error,'comparisons':comparisons}))
-    raise SystemExit(0 if error is None else 1)
+    print(json.dumps({'request_contract_passed':passed,'error':error,'comparisons':comparisons,
+                      'evidence_error':evidence_error}))
+    raise SystemExit(0 if passed else 1)
 
 
 if __name__=='__main__':main()

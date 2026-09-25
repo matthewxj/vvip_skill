@@ -6,6 +6,13 @@
 
 The repeated performance study uses the same runtime across 16 cards. The one-sample smoke latencies below are correctness observations, not estimates of population-level performance.
 
+The disconnect negative control below establishes HTTP reuse after closing a
+stream, not exact native cancellation or private-KV release. The September 25
+[client hardening](reliability.md) makes that limitation explicit and adds local
+failure regressions. The scheduler/source-profile hash is unchanged; those new
+client paths have not been rerun on GPU. Recorded September 23 measurements remain
+historical evidence and have not been rewritten.
+
 ## Repeated workload summary
 
 Four variants—native priority+sync, native priority+async, recompute, abort—rotate across all 16 cards, producing 256 reports and 1,664 measured requests. Each scenario/variant has 16 matched trials, concurrency four, and the default 100 ms wait threshold.

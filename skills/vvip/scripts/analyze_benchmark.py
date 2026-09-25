@@ -50,6 +50,8 @@ def aggregate(reports):
                     raise ValueError('arrival/prompt workload mismatch')
                 if candidate['model'] != base['model']:
                     raise ValueError('model alias mismatch')
+                if candidate.get('timeouts') != base.get('timeouts'):
+                    raise ValueError('timeout policy mismatch')
                 if candidate['summary']['vip']['ttft_slo_s'] != base['summary']['vip']['ttft_slo_s']:
                     raise ValueError('SLO mismatch')
         for variant in variants:

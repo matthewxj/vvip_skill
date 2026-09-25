@@ -131,6 +131,7 @@ Defaults include a 100 ms wait threshold, 200 ms decision interval, 60 decisions
 | [Design](skills/vvip/references/design.md) | Native state ownership, replay equations, abort delivery, invariants |
 | [Compatibility](skills/vvip/references/compatibility.md) | Executable gates and model-specific evidence |
 | [GPU validation](skills/vvip/references/validation.md) | Exact model/runtime identity and correctness results |
+| [Reliability and recovery](skills/vvip/references/reliability.md) | Deadlines, failed-run evidence, disconnect limits, and incident handling |
 | [Experiments](docs/EXPERIMENTS.md) | Workloads, statistical method, full results, limitations |
 | [Contributing](CONTRIBUTING.md) | Tests, packaging, and regenerating figures |
 
